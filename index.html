@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+	<head>
+		<!--Titulo del Sitio -->
+		<title>App Login</title>
+
+		<!-- Required meta tags -->
+		<meta charset="utf-8" />
+		<!--responsive site-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!--Estilos bootstrap -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			crossorigin="anonymous"
+		/>
+	</head>
+	<body>
+		<!--JS bootstrap -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"
+		></script>
+
+		<!--CONTENIDO del SITIO-->
+		<div class="container">
+			<!--Banner INICIO-->
+
+			<div class="row">
+				<div class="col">
+					<div>
+						<img
+							src="banner_inicio.png"
+							class="img-fluid"
+							alt="Responsive image"
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-2"></div>
+
+				<div class="col-sm-8">
+					<h4 class="text-center">Iniciar sesión</h4>
+				</div>
+				<div class="col-sm-2"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-2"></div>
+				<div class="col-sm-8">
+					<label class="form-label">Usuario:</label>
+					<input
+						type="text"
+						id="inputUsername"
+						placeholder="Usuario"
+						class="form-control"
+					/>
+					<br />
+					<label class="form-label">Contraseña:</label>
+					<input
+						type="password"
+						id="inputPassword"
+						placeholder="Contraseña"
+						class="form-control"
+					/>
+					<br />
+					<button type="button" class="btn btn-success" onclick="login()">
+						Ingresar
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Funciones JS -->
+		<script src="index.js"></script>
+	</body>
+</html>
