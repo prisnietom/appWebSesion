@@ -123,6 +123,45 @@
             </div>
         </div>
 
+		<hr />
+<h3>Editar Registro</h3>
+
+<div class="container">
+    <input type="hidden" id="editIndex" />
+
+    <div class="row">
+        <div class="col">
+            <label>Estatus:</label>
+            <select id="statusEdit" class="form-select">
+                <option value="En progreso">En progreso</option>
+                <option value="Rechazado">Rechazado</option>
+                <option value="Cancelado">Cancelado</option>
+                <option value="Cerrado">Cerrado</option>
+            </select>
+        </div>
+
+        <div class="col">
+            <label>Nuevo comentario:</label>
+            <input type="text" id="newComment" class="form-control" />
+        </div>
+    </div>
+
+    <br />
+    <button class="btn btn-primary" onclick="updateRecord()">Actualizar</button>
+</div>
+
+<div class="container">
+    <label>Filtrar por estatus:</label>
+    <select class="form-select" onchange="filterRecords(this.value)">
+        <option value="Todos">Todos</option>
+        <option value="Nuevo">Por hacer</option>
+        <option value="En progreso">En progreso</option>
+        <option value="Rechazado">Rechazado</option>
+        <option value="Cancelado">Cancelado</option>
+        <option value="Cerrado">Cerrado</option>
+    </select>
+</div>
+
         <br>
          <!--Mostrar Datos Tabla-->
         <div class="table-responsive container overflow-scroll" style="max-height:300;">
@@ -144,6 +183,8 @@
                     </tbody>
                 </table>
 			</div>
+
+
 
 		<!-- Funciones JS -->
 		<script src="index.js"></script>

@@ -46,91 +46,96 @@ let registros = []; // arreglo dinámico de registros
 
 //Función agregar registros
 function addTask(callback) {
-	let id = document.getElementById("idReg").value;
-	let nameReg = document.getElementById("nameReg").value;
-	let primerApReg = document.getElementById("primerApReg").value;
-	let segApReg = document.getElementById("segApReg").value;
-	let startDate = document.getElementById("startDate").value;
-	let numTel = document.getElementById("numTel").value;
-	let pet = document.getElementById("pet").value;
-	let razaPet = document.getElementById("razaPet").value;
-	let namePet = document.getElementById("namePet").value;
-	let comments = document.getElementById("comments").value;
+	try {
+		let id = document.getElementById("idReg").value;
+		let nameReg = document.getElementById("nameReg").value;
+		let primerApReg = document.getElementById("primerApReg").value;
+		let segApReg = document.getElementById("segApReg").value;
+		let startDate = document.getElementById("startDate").value;
+		let numTel = document.getElementById("numTel").value;
+		let pet = document.getElementById("pet").value;
+		let razaPet = document.getElementById("razaPet").value;
+		let namePet = document.getElementById("namePet").value;
+		let comments = document.getElementById("comments").value;
 
-	//  VALIDAR CAMPOS VACÍOS
-	if (
-		!id ||
-		!nameReg ||
-		!primerApReg ||
-		!segApReg ||
-		!startDate ||
-		!pet ||
-		!numTel ||
-		!namePet ||
-		!razaPet
-	) {
-		alert("Todos los campos son obligatorios");
-		return;
-	}
-
-	// VALIDAR TIPO NUMÉRICO
-
-	if (isNaN(id) || isNaN(numTel)) {
-		alert("ID y Número teléfono deben ser numéricos");
-		return;
-	}
-
-	id = Number(id);
-	numTel = Number(numTel);
-
-	// VALIDAR ID REPETIDO (CICLO FOR)
-
-	let idRepetido = false;
-
-	for (let i = 0; i < registros.length; i++) {
-		if (registros[i].id === id) {
-			idRepetido = true;
-			break; // Detiene el ciclo si encuentra coincidencia
+		//  VALIDAR CAMPOS VACÍOS
+		if (
+			!id ||
+			!nameReg ||
+			!primerApReg ||
+			!segApReg ||
+			!startDate ||
+			!pet ||
+			!numTel ||
+			!namePet ||
+			!razaPet
+		) {
+			alert("Todos los campos son obligatorios");
+			return;
 		}
+
+		// VALIDAR TIPO NUMÉRICO
+
+		if (isNaN(id) || isNaN(numTel)) {
+			alert("ID y Número teléfono deben ser numéricos");
+			return;
+		}
+
+		id = Number(id);
+		numTel = Number(numTel);
+
+		// VALIDAR ID REPETIDO (CICLO FOR)
+
+		let idRepetido = false;
+
+		for (let i = 0; i < registros.length; i++) {
+			if (registros[i].id === id) {
+				idRepetido = true;
+				break; // Detiene el ciclo si encuentra coincidencia
+			}
+		}
+
+		if (idRepetido) {
+			alert("El ID ya existe. No se puede repetir.");
+			return;
+		}
+
+		// CONFIRMAR ANTES DE GUARDAR
+
+		let confirmar = confirm("¿Deseas guardar este registro?");
+
+		if (!confirmar) {
+			alert("Registro cancelado");
+			return;
+		} else {
+			alert("Datos guardados");
+		}
+
+		// CREAR OBJETO
+
+		let nuevoCliente = {
+			id: id,
+			nameReg,
+			primerApReg,
+			segApReg,
+			startDate,
+			numTel: numTel,
+			pet,
+			razaPet,
+			namePet,
+			comments,
+			status: "Nuevo",
+		};
+
+		registros.push(nuevoCliente);
+
+		renderTable(); //llamado a la función, muestra datos en tabla
+
+		callback(); // limpia formulario
+	} catch (error) {
+		console.error(error);
+		alert("Error al guardar");
 	}
-
-	if (idRepetido) {
-		alert("El ID ya existe. No se puede repetir.");
-		return;
-	}
-
-	// CONFIRMAR ANTES DE GUARDAR
-
-	let confirmar = confirm("¿Deseas guardar este registro?");
-
-	if (!confirmar) {
-		alert("Registro cancelado");
-		return;
-	} else {
-		alert("Datos guardados");
-	}
-
-	// CREAR OBJETO
-
-	let nuevoCliente = {
-		id: id,
-		nameReg,
-		primerApReg,
-		segApReg,
-		startDate,
-		numTel: numTel,
-		pet,
-		razaPet,
-		namePet,
-		comments,
-		status: "Nuevo",
-	};
-
-	registros.push(nuevoCliente);
-
-	renderTable(); //llamado a la función, muestra datos en tabla
-
-	callback(); // limpia formulario
 }
 
 //función para mostrar datos guardados
